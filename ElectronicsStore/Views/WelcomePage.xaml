@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ElectronicsStore.ViewModels"
+    xmlns:model="clr-namespace:ElectronicsStore.Models"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Class="ElectronicsStore.Views.WelcomePage">
+
+    <ContentPage.BindingContext>
+        <vm:WelcomePageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Electronics Store"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="50"/>
+
+            <Label Text="Search For An Item"
+                   TextColor="Black"
+                   FontSize="16"/>
+            <SearchBar Text="Enter Text"/>
+
+            <StackLayout
+                VerticalOptions="CenterAndExpand">
+                <Label Text="Categories"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="Black"
+                   FontSize="25"/>
+                <ListView
+                        Background="Transparent"
+                        CachingStrategy="RecycleElement"
+                        ItemsSource="{Binding ProductCategories}"
+                        RowHeight="60">
+                        <ListView.Behaviors>
+                            <xct:EventToCommandBehavior EventName="ItemTapped" Command="{Binding TappedCommand}"
+                                                        EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:ProductCategory">
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{Binding CategoryName}"
+                                               TextColor="Black"
+                                               FontSize="20"
+                                               HorizontalOptions="CenterAndExpand"
+                                               VerticalOptions="CenterAndExpand"/>
+                                        <BoxView HeightRequest="1" Color="Black"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

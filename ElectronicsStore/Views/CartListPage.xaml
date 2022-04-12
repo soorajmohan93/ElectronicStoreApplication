@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ElectronicsStore.ViewModels"
+    xmlns:model="clr-namespace:ElectronicsStore.Models"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Class="ElectronicsStore.Views.CartListPage">
+
+
+
+    <ContentPage.BindingContext>
+        <vm:CartListPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter1"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior
+                EventName="Appearing"
+                Command="{Binding PageAppearingCommand}" />
+        <xct:EventToCommandBehavior
+                EventName="Disappearing"
+                Command="{Binding PageDisappearingCommand}" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Cart"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="25"/>
+
+                    <Label Text="{Binding CartIsEmpty}"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Black"
+                           FontSize="16"/>
+                    <ListView
+                        Background="Transparent"
+                        CachingStrategy="RecycleElement"
+                        ItemsSource="{Binding CartItems}"
+                        RowHeight="60">
+                        <ListView.Behaviors>
+                            <xct:EventToCommandBehavior EventName="ItemTapped" Command="{Binding TappedCommand}"
+                                                        EventArgsConverter="{StaticResource ItemTappedEventArgsConverter1}"/>
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Cart">
+                                <ViewCell>
+                                    <StackLayout>
+                                        <BoxView HeightRequest="1" Color="Black"/>
+                                        <Label Text="{Binding CartProductDetails.ProductName}"
+                                               TextColor="Black"/>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Label Text="Quantity Selected: "
+                                               TextColor="Black"/>
+                                            <Label Text="{Binding CartItemQty}"
+                                               TextColor="Black"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button Text="{Binding CartValue}" Command="{Binding PlaceOrderCommand}" />
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+
+
+</ContentPage>

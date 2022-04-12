@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:vm="clr-namespace:ElectronicsStore.ViewModels"
+    xmlns:model="clr-namespace:ElectronicsStore.Models"
+    x:Class="ElectronicsStore.Views.OrderItemPage">
+
+    <ContentPage.BindingContext>
+        <vm:OrderItemViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="{Binding ResultText}"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="25"/>
+                    <ListView
+                        Background="Transparent"
+                        CachingStrategy="RecycleElement"
+                        ItemsSource="{Binding OrderItems}"
+                        RowHeight="60">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:OrderItem">
+                                <ViewCell>
+                                    <StackLayout>
+                                        <BoxView HeightRequest="1" Color="Black"/>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Label Text="Item: "
+                                               TextColor="Black"/>
+                                            <Label Text="{Binding OrderItemName}"
+                                               TextColor="Black"/>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Label Text="Quantity: "
+                                               TextColor="Black"/>
+                                            <Label Text="{Binding OrderItemQty}"
+                                               TextColor="Black"/>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Label Text="Price: CAD "
+                                               TextColor="Black"/>
+                                            <Label Text="{Binding OrderItemValue}"
+                                               TextColor="Black"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button Text="Track Order" Command="{Binding TrackingCommand}"/>
+                    <Button Text="Cancel Order" Command="{Binding CancelOrderCommand}"/>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

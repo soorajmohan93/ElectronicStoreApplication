@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ElectronicsStore.ViewModels"
+    xmlns:model="clr-namespace:ElectronicsStore.Models"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Class="ElectronicsStore.Views.PreviousOrderPage">
+
+
+    <ContentPage.BindingContext>
+        <vm:PreviousOrderViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter2"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior
+                EventName="Appearing"
+                Command="{Binding PageAppearingCommand}" />
+        <xct:EventToCommandBehavior
+                EventName="Disappearing"
+                Command="{Binding PageDisappearingCommand}" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Previous Order"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="25"/>
+                    <ListView
+                        Background="Transparent"
+                        CachingStrategy="RecycleElement"
+                        ItemsSource="{Binding Orders}"
+                        RowHeight="60">
+                        <ListView.Behaviors>
+                            <xct:EventToCommandBehavior EventName="ItemTapped" Command="{Binding TappedCommand}"
+                                                        EventArgsConverter="{StaticResource ItemTappedEventArgsConverter2}"/>
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Order">
+                                <ViewCell>
+                                    <StackLayout>
+                                        <BoxView HeightRequest="1" Color="Black"/>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Label Text="Order Number: "
+                                               TextColor="Black"/>
+                                            <Label Text="{Binding OrderId}"
+                                               TextColor="Black"/>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Label Text="Order Value: "
+                                               TextColor="Black"/>
+                                            <Label Text="{Binding OrderValue}"
+                                               TextColor="Black"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

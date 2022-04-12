@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ElectronicsStore.ViewModels"
+    x:Class="ElectronicsStore.Views.ProductDetailPage">
+
+    <ContentPage.BindingContext>
+        <vm:ProductDetailPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <BoxView HeightRequest="50" />
+            <Label Text="{Binding ProductName}"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="35"/>
+            <Label Text="{Binding ProductDescription}"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="20"/>
+            
+            <BoxView HeightRequest="100"/>
+            <BoxView HeightRequest="1" Color="Black"/>
+            <BoxView HeightRequest="50"/>
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center">
+                <Label Text="Price:"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Black"
+                           FontSize="20"/>
+                <Label Text="{Binding ProductPrice}"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Black"
+                           FontSize="20"/>
+            </StackLayout>
+            
+            <BoxView HeightRequest="100"/>
+            <Label Text="Quantity Selected"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Black"
+                           FontSize="20"/>
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center">
+                <Button Text="-" Command="{Binding ReduceCommand}"/>
+                <Label Text="{Binding Quantity}"
+                       TextColor="Black"
+                       VerticalOptions="CenterAndExpand"
+                       FontSize="20"/>
+                <Button Text="+" Command="{Binding IncreaseCommand}"/>
+            </StackLayout>
+            <Button Text="Add to Cart" Command="{Binding AddToCartCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
