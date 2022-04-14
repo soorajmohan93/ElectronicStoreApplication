@@ -17,6 +17,7 @@ namespace ElectronicsStore
             DependencyService.Register<OrderDataStoreBlobStorageJson>();
             DependencyService.Register<OrderItemDataStoreBlobStorageJson>();
             DependencyService.Register<OrderTrackingDataStoreBlobStorageJson>();
+            DependencyService.Register<BlobAzureStorage>();
 
             MainPage = new AppShell();
         }

@@ -13,5 +13,6 @@ namespace ElectronicsStore.ViewModels
         public IOrderDataStore<Order> OrderDataStore => DependencyService.Get<IOrderDataStore<Order>>();
         public IOrderItemDataStore<OrderItem> OrderItemDataStore => DependencyService.Get<IOrderItemDataStore<OrderItem>>();
         public IOrderTrackingDataStore<OrderTracking> OrderTrackingDataStore => DependencyService.Get<IOrderTrackingDataStore<OrderTracking>>();
+        public IBlobStorageService BlobStore => DependencyService.Get<IBlobStorageService>();
     }
 }

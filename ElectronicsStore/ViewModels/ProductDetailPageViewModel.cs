@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ElectronicsStore.Models;
@@ -60,6 +61,13 @@ namespace ElectronicsStore.ViewModels
             set => SetProperty(ref quantity, value);
         }
 
+        private ImageSource picture;
+        public ImageSource Picture
+        {
+            get => picture;
+            set => SetProperty(ref picture, value);
+        }
+
         public AsyncCommand ReduceCommand { get; }
         public AsyncCommand IncreaseCommand { get; }
         public AsyncCommand AddToCartCommand { get; }
@@ -92,6 +100,11 @@ namespace ElectronicsStore.ViewModels
             {
                 Quantity = Cart.CartItemQty;
             }
+
+            MemoryStream stream = new MemoryStream();
+            stream = await BlobStore.DownloadStreamAsync($"Pictures/{Product.ProductCategory}/{Product.ProductName}.jpg");
+
+            Picture = ImageSource.FromStream(() => { return stream; });
         }
 
         public async Task Reduce()

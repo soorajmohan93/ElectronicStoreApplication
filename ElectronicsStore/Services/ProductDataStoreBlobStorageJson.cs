@@ -73,7 +73,7 @@ namespace ElectronicsStore.Services
                 new Product() { ProductId = 4, ProductName = "Apple Mac", ProductPrice = 1799.00M, ProductCategory = "Desktops", ProductDesc = "Apple Mac with M1 Silicon chip" },
                 new Product() { ProductId = 5, ProductName = "Lenovo ThinkCentre", ProductPrice = 1099.00M, ProductCategory = "Desktops", ProductDesc = "Levono PC" },
                 new Product() { ProductId = 6, ProductName = "Dell Desktop Computer", ProductPrice = 1299.00M, ProductCategory = "Desktops", ProductDesc = "Dell PC" },
-                new Product() { ProductId = 7, ProductName = "IPhone 13 Pro", ProductPrice = 1000.00M, ProductCategory = "Mobile Phones", ProductDesc = "Apple Phone" },
+                new Product() { ProductId = 7, ProductName = "Apple IPhone 13 Pro", ProductPrice = 1000.00M, ProductCategory = "Mobile Phones", ProductDesc = "Apple Phone" },
                 new Product() { ProductId = 8, ProductName = "Samsung Galaxy S22", ProductPrice = 899.00M, ProductCategory = "Mobile Phones", ProductDesc = "Samsung Phone" },
                 new Product() { ProductId = 9, ProductName = "OnePlus 10 Pro", ProductPrice = 799.00M, ProductCategory = "Mobile Phones", ProductDesc = "OnePlus Phone" },
                 new Product() { ProductId = 10, ProductName = "Sony PS5", ProductPrice = 1200.00M, ProductCategory = "Gaming Consoles", ProductDesc = "Playstation 5 from Sony" },
