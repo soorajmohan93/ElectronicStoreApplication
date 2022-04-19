@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs;
+using ElectronicsStore.Models;
 
 namespace ElectronicsStore.Services
 {
@@ -10,8 +11,7 @@ namespace ElectronicsStore.Services
 
         private readonly BlobServiceClient service = new BlobServiceClient(ConnectionString);
 
-        private static string ConnectionString => "DefaultEndpointsProtocol=https;AccountName=soorajjobmanager;AccountKey=yyCKVbnBK7pMN9hzKyqSK1sRwwELDoqXSPDxjPLTwOxGvccqysrEigv2hSGqrKiCyLuxtTEsB2TL+ASthcQWOA==;EndpointSuffix=core.windows.net";
-
+        private static string ConnectionString => Constants.ConnectionString;
         private static string Container => "data";
 
 

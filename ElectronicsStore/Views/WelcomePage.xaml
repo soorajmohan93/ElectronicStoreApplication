@@ -25,11 +25,6 @@
                    FontAttributes="Bold"
                    FontSize="50"/>
 
-            <Label Text="Search For An Item"
-                   TextColor="Black"
-                   FontSize="16"/>
-            <SearchBar Text="Enter Text"/>
-
             <StackLayout
                 VerticalOptions="CenterAndExpand">
                 <Label Text="Categories"
